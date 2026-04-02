@@ -1,0 +1,8 @@
+name: Compostable
+version: '1.0.0.0'
+main: io.github.derec4.compostable.Compostable
+api-version: '1.18'
+prefix: DerexXD
+authors: [ DerexXD ]
+description: Survival friendly plugin that makes more things usable for the composter block, like rotten flesh and fish!
+website: https://github.com/DereC4
