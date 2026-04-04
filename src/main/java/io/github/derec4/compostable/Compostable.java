@@ -11,7 +11,7 @@ public final class Compostable extends JavaPlugin {
     /**
      * Map of an item, and the rate you want to compost it by. Will read this in from config
      */
-    private final Map<Material, Double> customCompostables = new HashMap<>();
+    public static final Map<Material, Double> customCompostables = new HashMap<>();
 
     @Override
     public void onEnable() {

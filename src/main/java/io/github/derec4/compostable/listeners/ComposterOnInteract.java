@@ -11,6 +11,8 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
+import static io.github.derec4.compostable.Compostable.customCompostables;
+
 public class ComposterOnInteract implements Listener {
     @EventHandler
     public void onPlayerCompost(PlayerInteractEvent event) {
