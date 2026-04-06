@@ -52,4 +52,7 @@ processResources {
     filesMatching('paper-plugin.yml') {
         expand props
     }
+    filesMatching('plugin.yml') {
+        expand props
+    }
 }
