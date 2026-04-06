@@ -11,6 +11,8 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Random;
+
 import static io.github.derec4.compostable.Compostable.customCompostables;
 
 public class ComposterOnInteract implements Listener {
@@ -49,7 +51,20 @@ public class ComposterOnInteract implements Listener {
                 block.setBlockData(composter);
 
                 block.getWorld().playSound(block.getLocation(), Sound.BLOCK_COMPOSTER_FILL_SUCCESS, 1.0f, 1.0f);
-                // TODO: particle
+
+                // 4.6.2026 added composter particles! Algorithm meant to match vanilla, credits to Mojang
+                Random random = new Random();
+                double centerHeight = 0.5 + 0.03125; // approximation of vanilla center height
+                for (int i = 0; i < 10; i++) {
+                    double xa = random.nextGaussian() * 0.02;
+                    double ya = random.nextGaussian() * 0.02;
+                    double za = random.nextGaussian() * 0.02;
+                    double x = block.getX() + 0.1875 + 0.625 * random.nextFloat();
+                    double y = block.getY() + centerHeight + random.nextFloat() * (1.0 - centerHeight);
+                    double z = block.getZ() + 0.1875 + 0.625 * random.nextFloat();
+                    // spawnParticle(particle, x, y, z, count, offsetX, offsetY, offsetZ, extra)
+                    block.getWorld().spawnParticle(org.bukkit.Particle.COMPOSTER, x, y, z, 1, xa, ya, za, 0.0);
+                }
 
                 // If it hit level 7, it's ready to become bone meal! 8 is bonemeal composter state
                 if (composter.getLevel() == 7) {
