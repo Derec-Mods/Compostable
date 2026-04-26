@@ -32,8 +32,13 @@ public class ConfigManager {
             }
 
             double chance = items.getDouble(key, -1.0);
-            if (chance < 0.0 || chance > 1.0) {
-                plugin.getLogger().warning("Skipping invalid compost chance for " + key + ": " + chance);
+            if (chance < 0.0) {
+                plugin.getLogger().warning("Skipping items." + key + " because compost chance is below 0.0: " + chance);
+                continue;
+            }
+
+            if (chance > 1.0) {
+                plugin.getLogger().warning("Skipping items." + key + " because compost chance is above 1.0: " + chance);
                 continue;
             }
 
