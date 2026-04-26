@@ -1,5 +1,6 @@
 package io.github.derec4.compostable;
 
+import io.github.derec4.compostable.config.ConfigManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
@@ -21,6 +22,9 @@ public final class Compostable extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
+        saveDefaultConfig();
+        new ConfigManager(this).loadCustomCompostables();
+
         String version = getDescription().getVersion();
         @NotNull ConsoleCommandSender console = Bukkit.getConsoleSender();
         console.sendMessage(Component.text(""));
@@ -33,11 +37,5 @@ public final class Compostable extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-    }
-
-
-    public void loadItems() {
-        customCompostables.put(Material.ROTTEN_FLESH, 0.3);
-        // Add more here later!
     }
 }
